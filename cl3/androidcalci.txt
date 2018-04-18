@@ -1,0 +1,523 @@
+/*
+C:\Users\SHIVAM KUMAR SINGH\AndroidStudioProjects
+C:\Users\SHIVAM KUMAR SINGH\AppData\Local\Android\Sdk
+*/
+
+//activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+
+     tools:context=".MainActivity">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Calculator"
+
+        android:id="@+id/textView" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" android:text="Enter Input 1"
+        android:id="@+id/textView2" android:layout_below="@+id/textView" android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+
+    <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="number" android:ems="10" android:id="@+id/etNum" android:layout_below="@+id/textView2" android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Result"
+
+        android:id="@+id/textView3" android:layout_above="@+id/tvResult"
+
+        android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+
+    <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="number" android:ems="10" android:id="@+id/tvResult" android:layout_centerVertical="true" android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sine" android:id="@+id/btnSin" android:layout_marginTop="53dp" android:layout_below="@+id/tvResult" android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+        android:textAppearance="?android:attr/textAppearanceMedium" android:text="Medium Text"
+        android:id="@+id/textView5" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cosine" android:id="@+id/btnCos" android:layout_alignTop="@+id/btnSin" android:layout_toRightOf="@+id/btnSin" android:layout_toEndOf="@+id/btnSin" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tan" android:id="@+id/btnTan" android:layout_alignTop="@+id/btnCos" android:layout_toRightOf="@+id/btnSub"
+
+        android:layout_toEndOf="@+id/btnSub" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="+" android:id="@+id/btnAdd" android:layout_alignTop="@+id/btnSub" android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-" android:id="@+id/btnSub" android:layout_alignTop="@+id/btnMult" android:layout_toRightOf="@+id/btnAdd" android:layout_toEndOf="@+id/btnAdd" />
+
+
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="*" android:id="@+id/btnMult" android:layout_below="@+id/btnCos" android:layout_toRightOf="@+id/btnSub" android:layout_toEndOf="@+id/btnSub" android:layout_marginTop="53dp" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="/" android:id="@+id/btnDiv" android:layout_alignTop="@+id/btnMult" android:layout_toRightOf="@+id/btnMult"
+
+        android:layout_toEndOf="@+id/btnMult" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sq Rt" android:id="@+id/btnsqrt" android:layout_above="@+id/btnMult" android:layout_alignLeft="@+id/btnDiv"
+
+        android:layout_alignStart="@+id/btnDiv" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" android:text="Enter Input 2"
+        android:id="@+id/textView4" android:layout_below="@+id/etNum" android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+
+    <EditText android:layout_width="wrap_content" android:layout_height="wrap_content" android:inputType="numberDecimal" android:ems="10" android:id="@+id/etNum2" android:layout_below="@+id/textView4" android:layout_alignParentLeft="true" android:layout_alignParentStart="true" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MC" android:id="@+id/btnclr" android:layout_above="@+id/btnCos" android:layout_toLeftOf="@+id/textView"
+        android:layout_toStartOf="@+id/textView" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MR" android:id="@+id/btnmr" android:layout_above="@+id/btnCos" android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MS" android:id="@+id/btnms" android:layout_alignBottom="@+id/btnmr"
+
+        android:layout_toRightOf="@+id/btnmr" android:layout_toEndOf="@+id/btnmr" />
+
+</RelativeLayout>
+
+//MainActivity.java
+
+package com.example.shivamkumarsingh.trignometrycalc;
+
+import android.support.v7.app.AppCompatActivity; import android.os.Bundle;
+import android.view.View; import android.widget.Button; import android.widget.EditText;
+
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener
+
+{
+
+     Button btnsin,btncos,btntan,btnadd,btnsub,btnmul,btndiv,btnSqrt,btnatan,btnSav,btnRec,btnClr;
+     EditText etnum,etres,etnum2;
+
+     static double memoryValue,inputvalue;
+    @Override
+protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+    init();
+}
+
+    private void init(){ btnsin=(Button)findViewById(R.id.btnSin); btncos=(Button)findViewById(R.id.btnCos); btntan=(Button)findViewById(R.id.btnTan); btnadd=(Button)findViewById(R.id.btnAdd); btnsub=(Button)findViewById(R.id.btnSub); btnmul=(Button)findViewById(R.id.btnMult); btndiv=(Button)findViewById(R.id.btnDiv); btnSqrt=(Button)findViewById(R.id.btnsqrt); btnClr=(Button)findViewById(R.id.btnclr); btnRec=(Button)findViewById(R.id.btnmr); btnSav=(Button)findViewById(R.id.btnms); etnum=(EditText)findViewById(R.id.etNum); etnum2=(EditText)findViewById(R.id.etNum2); etres=(EditText)findViewById(R.id.tvResult); btnsin.setOnClickListener(this); btncos.setOnClickListener(this); btntan.setOnClickListener(this); btnadd.setOnClickListener(this); btnsub.setOnClickListener(this); btnmul.setOnClickListener(this); btndiv.setOnClickListener(this); btnSqrt.setOnClickListener(this); btnClr.setOnClickListener(this);
+
+        btnRec.setOnClickListener(this);
+        btnSav.setOnClickListener(this);
+    }
+    public void onClick(View view){
+        String num1=etnum.getText().toString();
+
+        switch(view.getId()){ case R.id.btnSin:
+
+            double sin= Math.sin(Double.parseDouble(num1)); etres.setText(String.valueOf(sin));
+            break;
+            case R.id.btnCos:
+
+                double Cos=Math.cos(Double.parseDouble(num1)); etres.setText(String.valueOf(Cos));
+                break;
+            case R.id.btnTan:
+
+                double Tan=Math.tan(Double.parseDouble(num1)); etres.setText(String.valueOf(Tan));
+                break;
+            case R.id.btnSub:
+                double x=Double.parseDouble(num1);
+                double y=Double.parseDouble(etnum2.getText().toString());
+                double sub=x-y;
+                etres.setText(String.valueOf(sub));
+                break;
+
+            case R.id.btnAdd: double
+
+                    add=Double.parseDouble(etnum2.getText().toString())+Double.parseDouble(num1); etres.setText(String.valueOf(add));
+                break;
+
+            case R.id.btnMult:
+                double mul=Double.parseDouble(etnum2.getText().toString())*Double.parseDouble(num1); etres.setText(String.valueOf(mul));
+                break;
+
+            case R.id.btnDiv:
+                double x1=Double.parseDouble(num1);
+                double y1=Double.parseDouble(etnum2.getText().toString());
+                double div=x1/y1; etres.setText(String.valueOf(div));
+                break;
+            case R.id.btnsqrt:
+
+                double sqrt=Math.sqrt(Double.parseDouble(num1)); etres.setText(String.valueOf(sqrt));
+                break;
+            case R.id.btnclr:
+
+                memoryValue = Double.NaN; etres.setText("data cleared");
+
+                break;
+            case R.id.btnmr:
+
+                if (Double.isNaN(memoryValue)) { etres.setText("no data");
+                }
+
+                else etres.setText(String.valueOf((int)memoryValue));
+                break;
+            case R.id.btnms:
+
+                inputvalue= Double.parseDouble(etres.getText().toString()); if (Double.isNaN(inputvalue)){
+                etres.setText("no data");} else {
+
+                memoryValue = inputvalue; etres.setText(String.valueOf(memoryValue));}
+                break;
+
+
+        }
+    }
+
+}
+ 
+/*
+2nd method:
+
+Actvity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/memsub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clear"
+        android:layout_toEndOf="@+id/add"
+        android:text="M-"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+    <Button
+        android:id="@+id/memadd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/clear"
+        android:text="M+"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+    <Button
+        android:id="@+id/memread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clear"
+        android:layout_toEndOf="@+id/subtract"
+        android:text="MR"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+    <Button
+        android:id="@+id/memclr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clear"
+        android:layout_toEndOf="@+id/multiply"
+        android:text="MC"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+    <TextView
+        android:id="@+id/Nothing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Made by Appy.. :)"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/num1"
+        android:layout_width="124dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="First number"
+        android:inputType="numberDecimal"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <EditText
+        android:id="@+id/num2"
+        android:layout_width="118dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/num1"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Second number"
+        android:inputType="numberDecimal"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="182dp"
+        android:text="+"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="201dp" />
+
+    <Button
+        android:id="@+id/subtract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/add"
+        android:layout_toEndOf="@+id/add"
+        android:text="-"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="201dp" />
+
+    <Button
+        android:id="@+id/multiply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/add"
+        android:layout_toEndOf="@+id/subtract"
+        android:text="*"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="201dp" />
+
+    <Button
+        android:id="@+id/divide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/add"
+        android:layout_toEndOf="@+id/multiply"
+        android:text="/"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="201dp" />
+
+    <Button
+        android:id="@+id/sine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/num1"
+        android:layout_centerVertical="true"
+        android:text="sin"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+    <Button
+        android:id="@+id/cos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/num1"
+        android:text="cos"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+    <Button
+        android:id="@+id/tan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/cos"
+        android:text="tan"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sine"
+        android:layout_toEndOf="@+id/num1"
+        android:text="Clear"
+        tools:layout_editor_absoluteX="280dp"
+        tools:layout_editor_absoluteY="270dp" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="218dp"
+        android:layout_height="48dp"
+        android:layout_alignEnd="@+id/num2"
+        android:layout_below="@+id/num1"
+        android:text="Result"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="123dp" />
+
+</RelativeLayout>
+
+
+
+//MainActivity.java
+
+package apoorva.mycalculator;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.math.BigDecimal;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+    Button add, subtract, multiply, divide, sin, cos, tan, clear, memadd, memsub, memread, memclr;
+    TextView result;
+    EditText num1, num2;
+
+    double ans = 0.0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        init();
+    }
+
+    public void init() {
+        add = (Button)findViewById(R.id.add);
+        subtract = (Button)findViewById(R.id.subtract);
+        multiply = (Button)findViewById(R.id.multiply);
+        divide = (Button)findViewById(R.id.divide);
+        sin = (Button)findViewById(R.id.sine);
+        cos = (Button)findViewById(R.id.cos);
+        tan = (Button)findViewById(R.id.tan);
+        clear = (Button)findViewById(R.id.clear);
+        memadd = (Button)findViewById(R.id.memadd);
+        memsub = (Button)findViewById(R.id.memsub);
+        memread = (Button)findViewById(R.id.memread);
+        memclr = (Button)findViewById(R.id.memclr);
+
+        num1 = (EditText)findViewById(R.id.num1);
+        num2 = (EditText)findViewById(R.id.num2);
+
+        result = (TextView)findViewById(R.id.result);
+
+        add.setOnClickListener(this);
+        subtract.setOnClickListener(this);
+        multiply.setOnClickListener(this);
+        divide.setOnClickListener(this);
+        sin.setOnClickListener(this);
+        cos.setOnClickListener(this);
+        tan.setOnClickListener(this);
+        clear.setOnClickListener(this);
+        memadd.setOnClickListener(this);
+        memsub.setOnClickListener(this);
+        memread.setOnClickListener(this);
+        memclr.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v){
+
+        String a, b;
+
+
+        switch (v.getId()){
+
+            case R.id.add:
+                            a = num1.getText().toString();
+                            b = num2.getText().toString();
+                            ans = Double.parseDouble(a) + Double.parseDouble(b);
+                            result.setText(String.valueOf(ans));
+                            break;
+
+            case R.id.subtract:
+                            a = num1.getText().toString();
+                            b = num2.getText().toString();
+                            ans = Double.parseDouble(a) - Double.parseDouble(b);
+                            result.setText(String.valueOf(ans));
+                            break;
+
+            case R.id.multiply:
+                 a = num1.getText().toString();
+                 b = num2.getText().toString();
+                            ans = Double.parseDouble(a) * Double.parseDouble(b);
+                            result.setText(String.valueOf(ans));
+                            break;
+
+            case R.id.divide:
+                a = num1.getText().toString();
+                b = num2.getText().toString();
+                            try{
+                                BigDecimal a1 = new BigDecimal(Double.parseDouble(a));
+                                BigDecimal b1 = new BigDecimal(Double.parseDouble(b));
+                                BigDecimal div_ans = a1.divide(b1,5,BigDecimal.ROUND_HALF_UP);
+                                result.setText(String.valueOf(div_ans));
+                            }
+                            catch (Exception e){
+                                result.setText("Cannot Divide by zero!");
+                            }
+                            break;
+
+            case R.id.sine:
+                 a = num1.getText().toString();
+                            num2.setText(" ");
+                            ans = Math.sin(Double.parseDouble(a));
+                            result.setText(String.valueOf(ans));
+                            break;
+            case R.id.cos:
+                 a = num1.getText().toString();
+                            num2.setText(" ");
+                            ans = Math.cos(Double.parseDouble(a));
+                            result.setText(String.valueOf(ans));
+                            break;
+            case R.id.tan:
+                 a = num1.getText().toString();
+                            num2.setText(" ");
+                            ans = Math.tan(Double.parseDouble(a));
+                            result.setText(String.valueOf(ans));
+                            break;
+
+            case R.id.clear:
+                            num1.setText(" ");
+                            num2.setText(" ");
+                            result.setText("Result");
+                            break;
+
+            case R.id.memadd:
+                            b = num2.getText().toString();
+                            num1.setText(" "+String.valueOf(ans));
+                            ans+=Double.parseDouble(b);
+                            result.setText(String.valueOf(ans));
+
+            case R.id.memsub:
+                            b = num2.getText().toString();
+                            num1.setText(" "+String.valueOf(ans));
+                            ans-=Double.parseDouble(b);
+                            result.setText(String.valueOf(ans));
+
+            case R.id.memread:
+                            num1.setText(" ");
+                            num2.setText(" ");
+                            result.setText(String.valueOf(ans));
+
+            case R.id.memclr:
+                            num1.setText(" ");
+                            num2.setText(" ");
+                            ans = 0;
+                            result.setText("Result");
+
+        }
+    }
+}
+
+
+*/

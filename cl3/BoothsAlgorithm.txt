@@ -1,0 +1,210 @@
+//Booths.java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class BoothsAlgorithm extends HttpServlet {
+  private int firstNumber, secondNumber;
+
+  public void init() throws ServletException
+  {
+     // Do required initialization
+  }
+
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+  {
+      firstNumber = Integer.parseInt(request.getParameterValues("firstNumber")[0]);
+      secondNumber = Integer.parseInt(request.getParameterValues("secondNumber")[0]);
+      
+      // Set response content type
+      response.setContentType("text/html");
+       
+      // Actual logic goes here.
+      PrintWriter out = response.getWriter();
+      out.println("<HTML>");
+      out.println("<HEAD>");
+      out.println("<TITLE>Server Response</TITLE>");
+      out.println("</HEAD>");
+      out.println("<BODY>");
+      out.println("<CENTER>");
+      int result = multiply(firstNumber, secondNumber, out);
+      out.println("<br><br>Result : "+ firstNumber +" * "+ secondNumber +" = "+ result);
+      out.println("</CENTER>");
+      out.println("</BODY>");
+      out.println("</HTML>");  
+   }
+   public int multiply(int n1, int n2,PrintWriter out)
+  {
+      int[] m = binary(n1);
+      int[] m1 = binary(-n1);
+      int[] r = binary(n2);        
+      int[] A = new int[17];
+      int[] S = new int[17];
+      int[] P = new int[17];        
+      for (int i = 0; i < 8; i++)
+      {
+          A[i] = m[i];
+          S[i] = m1[i];
+          P[i + 8] = r[i];
+      }
+      display(m, '1', out);
+      display(r, '2', out);
+      display(A, 'A', out);
+      display(S, 'S', out);
+      display(P, 'P', out);        
+      out.println("<br>");
+ 
+      for (int i = 0; i < 8; i++)
+      {
+          if (P[15] == 0 && P[16] == 0);
+              // do nothing            
+          else if (P[15] == 1 && P[16] == 0)
+              add(P, S);                            
+          else if (P[15] == 0 && P[16] == 1)
+              add(P, A);            
+          else if (P[15] == 1 && P[16] == 1);
+              // do nothing
+ 
+          rightShift(P);
+          display(P, 'P', out);
+      }
+      return getDecimal(P);
+  }
+    
+  public int getDecimal(int[] B)
+  {
+      int p = 0;
+      int t = 1;
+      for (int i = 15; i >= 0; i--, t *= 2)
+          p += (B[i] * t);
+      if (p > 15625)
+          p = -(65536 - p);
+      return p;        
+  }
+
+  public void rightShift(int[] A)
+  {        
+      for (int i = 16; i >= 1; i--)
+          A[i] = A[i - 1];        
+  }
+
+  public void add(int[] A, int[] B)
+  {
+      int carry = 0;
+      for (int i = 16; i >= 0; i--)
+      {
+          int temp = A[i] + B[i] + carry;
+          A[i] = temp % 2;
+          carry = temp / 2;
+      }        
+  }
+    /** Function to get binary of a number **/
+  public int[] binary(int n)
+  {
+      int[] bin = new int[8];
+      int ctr = 7;
+      int num = n;
+
+      if (n < 0)
+          num = 256 + n;
+      while (num != 0)
+      {
+          bin[ctr--] = num % 2;
+          num /= 2;
+      }
+      return bin;
+  }
+
+  public void display(int[] P, char ch, PrintWriter out)
+  { 
+      out.println("<br>"+ ch +" : ");
+      for (int i = 0; i < P.length; i++)
+      {
+          if (i == 4)
+              out.println("&nbsp");
+          if (i == 8)
+              out.println("&nbsp");
+          if (i == 12)
+              out.println("&nbsp");
+          out.println(P[i]);
+      } 
+  }
+   public void destroy()
+  {
+      // do nothing.
+  }
+}
+
+//index.jsp
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Booths Algorithm</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <center>
+            <form action="BoothsAlgorithm" method="POST">
+                Booths Algorithm<br><br>
+                <table>
+                    <tr>
+                    <td>First Input:</td>
+                    <td><input type="text" id="n1" name="firstNumber" value=""></td>
+                    </tr>
+                    <tr>
+                    <td>Second Input:</td>
+                    <td><input type="text"  id="n2" name="secondNumber" value=""></td>
+                    </tr>
+                </table>
+                <br><br><input type="submit"  id="mul"  value="Calculate">
+            </form>
+        </center>
+    </body>
+</html>
+=====================================================
+//web.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <servlet>
+        <servlet-name>BoothsAlgorithm</servlet-name>
+        <servlet-class>BoothsAlgorithm</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BoothsAlgorithm</servlet-name>
+        <url-pattern>/BoothsAlgorithm</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
+
+
+
+/*
+Prerequisites:
+Go to the Tools menu and select Plugins.
+Click on the "Available Plugins" tab.
+Check the box for "Java EE Base".
+Click the "Install" button.
+Select "Web Projects" from plugin list
+Check the term & condition checkbox
+Click next and wait while NetBeans downloading the plugin
+Restart IDE
+
+server link: https://tomcat.apache.org/download-80.cgi
+
+Path:C:\Program Files\Java\jdk-10\bin;C:\Program Files\Java\jre-10\bin;
+JAVA_HOME:C:\Program Files\Java\jdk-10;C:\Program Files\Java\jre-10
+	
+Selenium IDE cmds:
+open
+type id=n1 4
+type id=n2 6
+click id=mul 
+*/
